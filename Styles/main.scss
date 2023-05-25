@@ -1,0 +1,65 @@
+
+
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#wraper{
+    width: 100%;
+    background: #b27330;
+    #carusel{
+        display: flex;
+        flex-shrink: 0;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 95%;
+        margin: 0 auto;
+            .c_person_card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 300px;
+            min-height: 320px;
+            border: 3px solid wheat;
+            border-radius: 25%;
+            margin: 20px 20px;
+            background: rgb(199, 147, 115);
+            opacity: 0.55;
+            &:hover{
+                cursor: pointer;
+                opacity: 1;
+                transition: opacity .4s linear
+            }
+                .pc_card_img{
+                width: 100px;
+                height: 100px;
+                border-radius: 25%;
+                margin: 35px 0 65px;
+                img{
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 25%;
+                    border: 3px solid wheat;
+                }
+            }
+            .pc_name{
+                width: 270px;
+                height: 75px;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 35px;
+                color: aliceblue;
+                text-decoration: underline 3px wheat;
+            }
+        }
+        .center{
+            margin-top: 75px;
+        }
+    }
+}
+
+@import 'for_blogs.scss';

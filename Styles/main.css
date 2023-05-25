@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#wraper {
+  width: 100%;
+  background: #b27330;
+}
+#wraper #carusel {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
+}
+#wraper #carusel .c_person_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  min-height: 320px;
+  border: 3px solid wheat;
+  border-radius: 25%;
+  margin: 20px 20px;
+  background: rgb(199, 147, 115);
+  opacity: 0.55;
+}
+#wraper #carusel .c_person_card:hover {
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.4s linear;
+}
+#wraper #carusel .c_person_card .pc_card_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 25%;
+  margin: 35px 0 65px;
+}
+#wraper #carusel .c_person_card .pc_card_img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 25%;
+  border: 3px solid wheat;
+}
+#wraper #carusel .c_person_card .pc_name {
+  width: 270px;
+  height: 75px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 35px;
+  color: aliceblue;
+  -webkit-text-decoration: underline 3px wheat;
+          text-decoration: underline 3px wheat;
+}
+#wraper #carusel .center {
+  margin-top: 75px;
+}
+
+#wraper_container {
+  display: flex;
+  margin: 0;
+  box-sizing: border-box;
+}
+#wraper_container #left_side {
+  flex-shrink: 0;
+  width: 30%;
+  height: 800px;
+  background: rgb(60, 60, 150);
+}
+#wraper_container #right_side {
+  flex-shrink: 0;
+  height: 800px;
+  width: 70%;
+  background: rgb(60, 150, 72);
+}/*# sourceMappingURL=main.css.map */

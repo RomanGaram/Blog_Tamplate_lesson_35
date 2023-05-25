@@ -1,0 +1,17 @@
+#wraper_container {
+  display: flex;
+  margin: 0;
+  box-sizing: border-box;
+}
+#wraper_container #left_side {
+  flex-shrink: 0;
+  width: 30%;
+  height: 800px;
+  background: rgb(60, 60, 150);
+}
+#wraper_container #right_side {
+  flex-shrink: 0;
+  height: 800px;
+  width: 70%;
+  background: rgb(60, 150, 72);
+}/*# sourceMappingURL=for_blogs.css.map */

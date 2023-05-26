@@ -64,16 +64,67 @@
   display: flex;
   margin: 0;
   box-sizing: border-box;
+  background-color: #b27330;
 }
 #wraper_container #left_side {
   flex-shrink: 0;
   width: 30%;
   height: 800px;
-  background: rgb(60, 60, 150);
 }
 #wraper_container #right_side {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-evenly;
   flex-shrink: 0;
   height: 800px;
   width: 70%;
-  background: rgb(60, 150, 72);
+}
+#wraper_container #right_side .post {
+  width: 40%;
+  margin-top: 50px;
+}
+#wraper_container #right_side .post .post_img {
+  width: 100%;
+  height: 335px;
+  margin-bottom: 25px;
+}
+#wraper_container #right_side .post h2 {
+  margin-bottom: 25px;
+}
+#wraper_container #right_side .post .truncated-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#wraper_container #right_side .post .truncated-text::after {
+  content: "...men coniecto cenaculum.";
+  display: inline;
+  color: black;
+}
+#wraper_container #right_side .messageWraper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -15% -60%;
+}
+#wraper_container #right_side .messageWraper .backButton {
+  margin-top: 20px;
+  width: 40%;
+  height: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: aliceblue;
+  background: rgb(199, 147, 115);
+  border: none;
+  border-radius: 10px;
+}
+#wraper_container #right_side .messageWraper .backButton:hover {
+  cursor: pointer;
+  box-shadow: inset wheat 0px 0px 15px 10px;
+  transition: box-shadow 0.35s linear;
 }/*# sourceMappingURL=main.css.map */

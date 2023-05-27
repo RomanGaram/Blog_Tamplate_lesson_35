@@ -1,14 +1,10 @@
-
-
-
 *{
     margin: 0;
     box-sizing: border-box;
 }
-
+body{background: #b27330;
 #wraper{
     width: 100%;
-    background: #b27330;
     #carusel{
         display: flex;
         flex-shrink: 0;
@@ -48,7 +44,7 @@
             .pc_name{
                 width: 270px;
                 height: 75px;
-                font-size: 30px;
+                font-size: 24px;
                 font-weight: bold;
                 text-align: center;
                 line-height: 35px;
@@ -61,5 +57,7 @@
         }
     }
 }
+}
 
 @import 'for_blogs.scss';
+@import 'for_post.scss';

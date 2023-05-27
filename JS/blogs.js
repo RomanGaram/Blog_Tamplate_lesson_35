@@ -17,7 +17,9 @@ async function displayUserPosts() {
             posts.forEach(postItem => {
                 createPostElement(postItem);
             });
+            creaateButton();
         }
+        
     }
 
     function displayNoPostsMessage() {
@@ -40,15 +42,18 @@ async function displayUserPosts() {
         messageWraper.appendChild(noPostsMessage);
         messageWraper.appendChild(backButton);
         rightSide.appendChild(messageWraper);
+
     }
+  
 
     const userId = getId();
     await getPosts(userId);
+    
 }
-
+const rightSide = document.getElementById('right_side');
 // Функція для створення елемента поста
 function createPostElement(postItem) {
-    const rightSide = document.getElementById('right_side');
+    
     const postLink = document.createElement('a');
     postLink.href = `post.html?id=${postItem.id}`; // Посилання на сторінку поста з використанням id поста
 
@@ -75,5 +80,18 @@ function createPostElement(postItem) {
     rightSide.appendChild(postElement);
 }
 
+     function creaateButton() {
+         const backButton = document.createElement('button');
+         backButton.type = 'button';
+         backButton.classList.add('backButton');
+         backButton.innerText = 'Назад';
+         backButton.onclick = function() {
+         window.location.href = 'index.html';
+         }
+         rightSide.appendChild(backButton);
+     }
+ 
+
 // Виклик функції для отримання та відображення списку постів
 displayUserPosts();
+

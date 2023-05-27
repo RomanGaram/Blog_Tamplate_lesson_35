@@ -1,35 +1,59 @@
+let titleElement;
+let textElement;
+let backButton;
 
-
-// Функція для завантаження та відображення посту
-function displayPost(post) {
-  // HTML-розмітка для відображення посту
+function displayPost() {
+    // HTML-розмітка для відображення посту
+    const postWraper = document.getElementById('post_wraper');
     const postContainer = document.createElement('div');
-    const titleElement = document.createElement('h1');
-    const textElement = document.createElement('p');
-    const backButton = document.createElement('a');
-  // Встановлюємо заголовок і текст посту
-  titleElement.textContent = post.title;
-  textElement.textContent = post.body;
+    postContainer.classList.add('post_container');
+    const leftPost = document.createElement('div');
+    leftPost.classList.add('left_post');
+    const rightPost = document.createElement('div');
+    rightPost.classList.add('right_post');
+    titleElement = document.createElement('h1');
+    titleElement.classList.add('post_title');
+    textElement = document.createElement('p');
+    textElement.classList.add('post_body');
+  
+    // Додаємо пост до контейнера
+    postContainer.appendChild(leftPost);
+    postContainer.appendChild(rightPost);
+    leftPost.appendChild(titleElement);
+    leftPost.appendChild(textElement);
 
-  // Додаємо пост до контейнера
-  postContainer.appendChild(titleElement);
-  postContainer.appendChild(textElement);
+  
+    // Додаємо контейнер з постом до DOM
+    postWraper.appendChild(postContainer);
+  }
 
-  // Створюємо посилання "Назад" і встановлюємо йому відповідне посилання
-  backButton.textContent = 'Назад';
-  backButton.setAttribute('href', '/list-of-posts'); // Замініть '/list-of-posts' на посилання до списку всіх постів обраного користувача
-  postContainer.appendChild(backButton);
+function getIdFromUrl(){
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id');
+    };
 
-  // Додаємо контейнер з постом до DOM
-  document.body.appendChild(postContainer);
-};
+  const apiPostsUrl = 'https://gorest.co.in/public/v2/posts';
 
+  // Виконуємо запит до API
+async function getPost() {
+    const postId = getIdFromUrl();
+    const response = await fetch(`${apiPostsUrl}/${postId}`);
+    const post = await response.json();
 
+    // Встановлюємо заголовок і текст посту
+    titleElement.textContent = post.title;
+    textElement.textContent = post.body;
+    userId = post.user_id;
+}
 
+getPost();
+displayPost();
+fetchComments();
 
 // Функція для завантаження коментарів з API для конкретного посту
-function fetchComments(postId) {
-    const apiUrl = 'https://gorest.co.in/public/v2/comments?post_id=' + postId; // Замініть це на вашу URL-адресу API з правильним параметром post_id
+function fetchComments() {
+    const forApiPostId = getIdFromUrl();
+    const apiUrl = `https://gorest.co.in/public/v2/comments?post_id=${forApiPostId}`; // Замініть це на вашу URL-адресу API з правильним параметром post_id
   
     // Виконуємо запит до API за допомогою fetch або іншої бібліотеки
     fetch(apiUrl)
@@ -49,6 +73,7 @@ function fetchComments(postId) {
 function displayComments(comments) {
     // HTML-розмітка для відображення коментарів
     const commentsContainer = document.createElement('div');
+    commentsContainer.classList.add('all_comments_box');
     const commentsTitle = document.createElement('h2');
 
   // Встановлюємо заголовок "Коментарі"
@@ -62,8 +87,11 @@ function displayComments(comments) {
     // Проходимося по всіх коментарях і створюємо HTML-елементи для відображення кожного коментаря
     comments.forEach(function(comment) {
       const commentElement = document.createElement('div');
+      commentElement.classList.add('coment_container');
       const authorElement = document.createElement('h3');
+      authorElement.classList.add('coment_title');
       const textElement = document.createElement('p');
+      textElement.classList.add('coment_text');
 
       // Встановлюємо ім'я користувача та текст коментаря
       authorElement.textContent = comment.name;
@@ -82,44 +110,20 @@ function displayComments(comments) {
     noCommentsElement.textContent = 'Коментарі відсутні';
     commentsContainer.appendChild(noCommentsElement);
   }
+  function creaateButton() {
+    const backButton = document.createElement('button');
+    backButton.type = 'button';
+    backButton.classList.add('backButton');
+    backButton.innerText = 'Назад';
+    backButton.onclick = function() {
+      window.location.href = `blogs.html?id=${userId}`;
+    };
+    const comentsWraper = document.getElementById('coments_wraper');
+    comentsWraper.appendChild(backButton);
+} 
 
   // Додаємо контейнер з коментарями до DOM
-  document.body.appendChild(commentsContainer);
+  const comentsWraper = document.getElementById('coments_wraper');
+  comentsWraper.appendChild(commentsContainer);
+  creaateButton();
 }
-
-// Функція для отримання посту з API за його ідентифікатором
-function fetchPostById(post_Id) {
-  const apiPostsUrl = 'https://gorest.co.in/public/v2/posts'; // Замініть це на вашу URL-адресу API
-
-  // Виконуємо запит до API за допомогою fetch або іншої бібліотеки
-  fetch(apiPostsUrl)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      // Знаходимо пост з відповідним ідентифікатором
-      const post = data.find(function(item) {
-        return post_Id;
-      });
-
-      if (post) {
-        // Передаємо отриманий пост для відображення в функцію displayPost
-        displayPost(post_Id);
-
-        // Викликаємо функцію fetchComments для отримання коментарів з API
-        fetchComments(post_Id);
-      } else {
-        console.log('Пост з ідентифікатором ' + post_Id + ' не знайдено');
-      }
-    })
-    .catch(function(error) {
-      console.log('Виникла помилка при завантаженні посту:', error);
-    });
-}
-
-// Отримуємо ідентифікатор посту з параметрів URL
-const urlParams = new URLSearchParams(window.location.search);
-const post_Id = urlParams.get('id');
-
-// Виклик функції fetchPostById для отримання посту з API за його ідентифікатором
-fetchPostById(post_Id);

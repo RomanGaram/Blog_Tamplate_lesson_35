@@ -1,12 +1,11 @@
+body{background-color:#b27330;
 #wraper_container{
     display: flex;
     margin: 0;
     box-sizing: border-box;
-    background-color:#b27330;
     #left_side{
         flex-shrink: 0;
         width: 30%;
-        height: 800px;
     }
     #right_side{
         display: flex;
@@ -14,8 +13,25 @@
         justify-content: center;
         justify-content: space-evenly;
         flex-shrink: 0;
-        height: 800px;
         width: 70%;
+        .backButton{
+            margin-top: 20px;
+            width: 40%;
+            height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: aliceblue;
+            background: rgb(199, 147, 115);
+            border: none;
+            border-radius: 10px;
+            align-self: flex-end;
+            &:hover{
+                cursor: pointer;
+                box-shadow: inset wheat 0px 0px 15px 10px;
+                transition: box-shadow .35s linear;
+            }
+        }
         .post{
             width: 40%;
             margin-top: 50px;
@@ -65,3 +81,4 @@
         }
     }
 }}
+}
